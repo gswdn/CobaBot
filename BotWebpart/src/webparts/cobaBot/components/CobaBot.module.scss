@@ -1,0 +1,221 @@
+@import '~office-ui-fabric-react/dist/sass/References.scss';
+$botConversationColor: "[theme: neutralLighter]";
+$userConversationColor: "[theme: neutralLighter]";
+$linkIconBackground: "[theme: neutralLighter]";
+$linkIconForeground: "[theme: themePrimary]";
+
+.cobaBot {
+  .outerContainer {
+    font-size: $ms-font-size-m;
+    font-weight: $ms-font-weight-regular;
+    color: "[theme: black]";
+    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  }
+
+  .outerContainer:hover .topRightMenuOuterDiv {
+    display: flex;
+  }
+
+  .topRightMenuOuterDiv {
+    position: absolute;
+    top: 5px; /* do not cover slight webpart line in webpart edit mode */
+    height: 20px;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    flex-direction: row-reverse;
+  }
+
+  .toprightMenuLinkIcon {
+    margin-right: 3px;
+    border: white 2px solid;
+    font-size: 12px;
+    padding: 4px;
+    background-color: $linkIconBackground;
+    color: $linkIconForeground;
+    display: inline;
+    cursor: pointer;
+  }
+
+  a, a:hover, a:visited {
+    font-size: $ms-font-size-m;
+    font-weight: $ms-font-weight-regular;
+    color: "[theme: black]"
+  }
+
+  .container {
+    margin: 0px 0px;
+    overflow-y: auto;
+    height: 100%;
+  }
+
+  .conversationBotRow {
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+
+  .conversationUserRow {
+    display: block;
+    width: 100%;
+    clear: both;
+  }
+
+  .conversationItem {
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    min-width: 50px;
+    text-align: left;
+  }
+
+  .conversationBotRow > .conversationItem {
+    float: left;
+    margin-right: 20%;
+    background-color: $botConversationColor;
+  }
+  
+  .conversationBotRow > .conversationItem:after {
+    content: '';
+    position: absolute;
+    top: -1;
+    bottom: 0;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: $botConversationColor;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+
+  .conversationUserRow > .conversationItem {
+    float: right;
+    margin-left: 20%;
+    background-color: $userConversationColor;
+  }
+
+  .conversationUserRow > .conversationItem:after {
+    content: '';
+    position: absolute;
+    top: -1;
+    bottom: 0;
+    right: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: $userConversationColor;
+    border-bottom: 0;
+    border-right: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+
+  .footer {
+    clear: both; /*important for scrollToFooter */
+  }
+
+  .questionButtonPanel {
+    text-align: center;
+  }
+
+  .questionUseranswerPanel {
+    text-align: left;
+  }
+
+  .questionUserAnswerContextPanel {
+    position: absolute;
+    top: -22px;
+    left: 0px;
+    right: 2px;
+    height: 30px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  .questionUserAnswerContextPanel:hover .questionUserAnswerContextPanelButton {
+    display: inline;
+  }
+
+  .conversationItem:hover .questionUserAnswerContextPanelButton {
+    display: inline;
+  }
+
+  .questionUserAnswerContextPanelButton {
+    border: white 2px solid;
+    font-size: 12px;
+    padding: 4px;
+    background-color: $linkIconBackground;
+    color: $linkIconForeground;
+    display: none;
+    cursor: pointer;
+  }
+
+    /* just because I love this square style */
+    .conversationItem ul {
+      list-style: square outside none;
+      padding-left: 15px;
+    }
+
+  .button {
+    margin: 5px;
+    text-decoration: none;
+    height: 32px;
+
+    // Primary Button
+    min-width: 80px;
+    background-color: "[theme: themePrimary]";
+    border-color: "[theme: themePrimary]";
+    color: "[theme: white]";
+
+    // Basic Button
+    outline: transparent;
+    position: relative;
+    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-size: $ms-font-size-m;
+    font-weight: $ms-font-weight-regular;
+    border-width: 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    padding: 0 16px;
+
+    .label {
+      font-weight: $ms-font-weight-semibold;
+      font-size: $ms-font-size-m;
+      height: 32px;
+      line-height: 32px;
+      margin: 0 4px;
+      vertical-align: top;
+      display: inline-block;
+    }
+  }
+
+  .container::-webkit-scrollbar-track
+  {
+    border-left: 5px solid white;
+    border-right-style: solid;
+    border-right-width: 5px;
+    border-right-color: "[theme: neutralLighter]";
+  }
+
+  .container::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: "[theme: neutralLighter]";
+    border-left: 10px solid white;
+  }
+
+  .container::-webkit-scrollbar-thumb
+  {
+    border-right-color: "[theme: themePrimary]";
+    border-right-width: 5px;
+    border-right-style: solid;
+    border-left: 5px solid white;
+  }
+}

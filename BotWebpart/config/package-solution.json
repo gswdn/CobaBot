@@ -1,0 +1,14 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "guerilla-coba-bot-client-side-solution",
+    "id": "bb39a2d0-b951-403c-9876-23feb2fd0c27",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false
+  },
+  "paths": {
+    "zippedPackage": "solution/guerilla-coba-bot.sppkg"
+  }
+}
