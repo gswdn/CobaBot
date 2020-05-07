@@ -5,9 +5,7 @@ The bot asks questions, that are answered by the user. Depending on the answer, 
 CobaBot is a SharePoint SPFx webpart, so no additional infrastrucutre is required.
 The conversation is based on a so called conversation template (JSON/YAML), that defines questions, responses and decisions.
 
-Sample - Initial Screen:
-
-Sample - A few questions answered:
+![Animated GIF showing a sample CobaBot conversation](https://github.com/gswdn/CobaBot/blob/master/Assets/TeaserChat.gif)
 
 ## Just wanna use it?
 The latest stable package can be found in the "Package" subfolder here on GitHub.
@@ -16,6 +14,8 @@ The latest stable package can be found in the "Package" subfolder here on GitHub
 * Upload the "guerilla-coba-bot.sppkg" file and deploy the solution
 * If the app is not deployed tenant-wide, you have to add the app to the SiteCollection, where you'd like to use it.
 * Edit a page and add the CobaBot WebPart
+
+![Screenshot on how to add CobaBot to a page](https://github.com/gswdn/CobaBot/blob/master/Assets/AddWebpart.png)
 
 ## Conversation template details
 ### basics
