@@ -35,13 +35,13 @@ jobs:
     - name: Copy package
       run: |
         mkdir -p Package
-        cp BotWebpart/sharepoint/solution/guerilla-coba-bot.sppkg Package
+        cp BotWebpart/sharepoint/solution/guerilla-cobabot.sppkg Package
     - name: Commit files
       run: |
         cd Package
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add guerilla-coba-bot.sppkg
+        git add guerilla-cobabot.sppkg
         git commit -m "Added/Updated package"
     - name: Push changes
       uses: ad-m/github-push-action@master
