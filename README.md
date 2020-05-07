@@ -11,6 +11,7 @@ Sample - A few questions answered:
 
 ## Just wanna use it?
 The latest stable package can be found in the "Package" subfolder here on GitHub.
+* Download the file
 * Create an App Catalog for your SharePoint Online Tenant 
 * Upload the "guerilla-coba-bot.sppkg" file and deploy the solution
 * If the app is not deployed tenant-wide, you have to add the app to the SiteCollection, where you'd like to use it.
@@ -19,9 +20,18 @@ The latest stable package can be found in the "Package" subfolder here on GitHub
 ## Conversation template details
 ### basics
 
-CobaBot best follows a conversation, that can be 
+CobaBot follows a conversation based on a template ("ConversationTemplate").
+
+The template is set as JSON in the webpart properties. I prefer to write the Conversation Template as YAML and convert it to JSON. In a later version, it's planned that YAML can directly be set in the properties.
 
 #### concept
+
+The Conversation Template defines the conversation, that means: Responses, Questions, and Decisions. We name them Conversation Items.
+Each Conversation Item should have a key to uniquely identify it. This gets important for jumping to a particular Conversation Item.
+
+Responses are just written chat messages from the bot.
+Questions are something, the bot asks. You can define possible answers, that will be presented as buttons.
+Depending on the user's answer, a decision is made, what means: go to another Conversation Item identified by the unique key.
 
 #### localization
 
@@ -31,7 +41,7 @@ CobaBot best follows a conversation, that can be
 
 ### Decisions
 
-## For contributers
+## For contributors
 
 ### Building the code
 
