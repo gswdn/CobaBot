@@ -3,7 +3,9 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneToggle
+  PropertyPaneToggle,
+  PropertyPaneLabel,
+  PropertyPaneLink
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
@@ -12,6 +14,7 @@ import CobaBot from './components/CobaBot';
 import { ICobaBotProps } from './components/CobaBot';
 import { PropertyFieldNumber } from '@pnp/spfx-property-controls/lib/PropertyFieldNumber';
 import { PropertyFieldCodeEditor, PropertyFieldCodeEditorLanguages } from '@pnp/spfx-property-controls/lib/PropertyFieldCodeEditor';
+import * as PnPTelemetry from '@pnp/telemetry-js';
 
 
 export interface ICobaBotWebPartProps {
@@ -19,10 +22,10 @@ export interface ICobaBotWebPartProps {
   DefaultHeight: number;
   ConversationHeight: number;
   DisplayStopConversationButton: boolean;
+  PNPTelemetryEnabled: boolean;
 }
 
 export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPartProps> {
-
   public render(): void {
 
     const currentUILanguage:string = this.getCurrentUICulture();
@@ -68,6 +71,11 @@ export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPa
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
+
+    if (! this.properties.PNPTelemetryEnabled) {
+      const telemetry = PnPTelemetry.default.getInstance().optOut();
+    }
+
     return {
       pages: [
         {
@@ -108,7 +116,28 @@ export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPa
                 }),
                 PropertyPaneToggle('DisplayStopConversationButton', {
                   label: 'Display "stop converstion" button'
+                })  
+              ]
+            },
+            {
+              groupName: 'Telemetry',
+              groupFields: [
+                PropertyPaneLabel('PNPTelemetryLabel', {
+                  text: 'CobaBot uses code/controls from the Microsoft Patterns And Practices community (PNP). These controls submit telemetry data. If you like to support them, you can turn on the switch below.'
                 }),
+                PropertyPaneLink('PNPGroupLink', {
+                  text: 'More about Microsoft PNP',
+                  href: 'https://pnp.github.io/',
+                  target: '_blank'
+                }),
+                PropertyPaneLink('PNPTelemetryLink', {
+                  text: 'More about PNP Telemetry',
+                  href: 'https://github.com/pnp/telemetry-proxy-node#pnp-nodejs-based-telemetry-proxy-for-application-insights',
+                  target: '_blank'
+                }),
+                PropertyPaneToggle('PNPTelemetryEnabled', {
+                  label: 'Transmit telemetry data',
+                })
               ]
             }
           ]
