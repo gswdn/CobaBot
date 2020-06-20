@@ -218,4 +218,57 @@ $linkIconForeground: "[theme: themePrimary]";
     border-right-style: solid;
     border-left: 5px solid white;
   }
+
+  /* typing indicator for bot start */
+  .typingIndicator {
+    background-color: $botConversationColor;
+    will-change: transform;
+    width: auto;
+    padding: 5px;
+    display: table;
+    margin: 0 auto;
+    position: relative;
+    animation: bulge 2s infinite ease-out;
+    span {
+      height: 8px;
+      width: 8px;
+      float: left;
+      margin: 0 1px;
+      background-color: $linkIconForeground;
+      display: block;
+      border-radius: 50%;
+      opacity: 0.4;
+      @for $i from 1 through 3 {
+        &:nth-of-type(#{$i}) {
+          animation: blink 1s infinite ($i * .3333s);
+        }
+      }
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes bulge {
+    50% {
+      transform: scale(1.05);
+    }
+  }
+  
+  // vertically center demo 
+  html {
+    display: table;
+    height: 100%;
+    width: 100%;
+  }
+  
+  body {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  /* typing indicator for bot end */
+
 }

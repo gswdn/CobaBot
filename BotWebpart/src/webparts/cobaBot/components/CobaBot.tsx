@@ -15,6 +15,7 @@ export interface ICobaBotProps {
 export interface ICobaBotState {
   conversation: Array<object>;
   conversationActive: boolean;
+  botIsTyping: boolean;
 }
 
 export default class CobaBot extends React.Component<ICobaBotProps, ICobaBotState> {
@@ -31,21 +32,22 @@ export default class CobaBot extends React.Component<ICobaBotProps, ICobaBotStat
 
     this.state = { 
       conversation: [],
-      conversationActive: false
+      conversationActive: false,
+      botIsTyping: false
     };
   }
 
   public async componentDidMount() {
     let parsedConversationTemplate: object = JSON.parse(this.props.ConversationTemplate);
 
-    this.conversationEngine = new ConversationEngine(this.onConversationPropertiesChanged, this.props.UILanguage);
+    this.conversationEngine = new ConversationEngine(this.onConversationPropertiesChanged, this.onBotTyping, this.props.UILanguage);
     this.conversationEngine.startConversation(parsedConversationTemplate);
   }
 
   public componentWillReceiveProps(newProps) {
     if (this.props.ConversationTemplate != newProps.ConversationTemplate) {
       let parsedConversationTemplate: object = JSON.parse(newProps.ConversationTemplate);
-      this.conversationEngine = new ConversationEngine(this.onConversationPropertiesChanged, this.props.UILanguage);
+      this.conversationEngine = new ConversationEngine(this.onConversationPropertiesChanged, this.onBotTyping, this.props.UILanguage);
       this.conversationEngine.startConversation(parsedConversationTemplate);
     }
   }
@@ -54,11 +56,17 @@ export default class CobaBot extends React.Component<ICobaBotProps, ICobaBotStat
     this.scrollToFooter();
   }
 
-  private onConversationPropertiesChanged = async (): Promise<void> => {
+  private onConversationPropertiesChanged = async(): Promise<void> => {
     let updatedConversationItems = [].concat(this.conversationEngine.conversationItems);
     this.setState({
       conversation: updatedConversationItems,
       conversationActive: this.conversationEngine.conversationActive
+    });
+  }
+
+  private onBotTyping = async(isTyping: boolean): Promise<void> => {
+    this.setState({
+      botIsTyping: isTyping
     });
   }
 
@@ -97,13 +105,28 @@ export default class CobaBot extends React.Component<ICobaBotProps, ICobaBotStat
               <a onClick={(e) => this.onUndoConversationStepClicked(e)} title="Undo last conversation step"><Icon iconName='Undo' className={styles.toprightMenuLinkIcon} /></a>
             }
           </div>
-          <div className={styles.container} ref={this.reactContainerRef} >
-            { this.state.conversation }
+            <div className={styles.container} ref={this.reactContainerRef} >
+              { this.state.conversation }
+              { ((this.conversationEngine && this.state.botIsTyping) ? this.getBotIsTypingIndicator() : null) }
             <div ref={this.reactFooterRef} className={styles.footer} ></div>
           </div>
         </div>
       </div>
     );
+  }
+
+  private getBotIsTypingIndicator(): React.ReactChild {
+    return (
+      <div className={styles.conversationBotRow}>
+      <div className={styles.conversationItem}>
+        <div className={styles.typingIndicator}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>                 
+      </div>
+    </div>      
+    )
   }
 
   private scrollToFooter(): void {

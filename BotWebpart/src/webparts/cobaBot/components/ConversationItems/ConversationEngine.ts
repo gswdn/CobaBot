@@ -17,13 +17,15 @@ export class ConversationEngine {
     public conversationItems: Array<React.ReactElement>;
     public conversationActive: boolean;
     private onPropertiesChanged: any;
+    private onBotIsTyping: (para: boolean) => void;
     
     private currentConversationStepIndex: number = 0;
     private conversationQuestionsStack: Array<conversationQuestionStackItem>;
     private QuestionAnswers: KeyedCollection<string>;
     
-    constructor(onConversationUpdated: any, UILanguage: string) {
+    constructor(onConversationUpdated: any, onBotIsTyping: (para: boolean) => void, UILanguage: string) {
         this.onPropertiesChanged = onConversationUpdated;
+        this.onBotIsTyping = onBotIsTyping;
         this.UILanguage = UILanguage;
         this.conversationActive = false;
     }
@@ -237,9 +239,17 @@ export class ConversationEngine {
     }
 
     public answerQuestion(questionKey: string, answerToQuestion: string) {
-        this.conversationActive = true;
-        this.QuestionAnswers.AddOrUpdate(questionKey.toLowerCase(), answerToQuestion);
-        this.currentConversationStepIndex++;
-        this.calculateConversationItems();
+        this.conversationActive = true;     
+        this.onBotIsTyping(true);
+        setTimeout(
+            function() {
+                this.onBotIsTyping(false);
+                this.QuestionAnswers.AddOrUpdate(questionKey.toLowerCase(), answerToQuestion);
+                this.currentConversationStepIndex++;
+                this.calculateConversationItems();
+            }
+            .bind(this),
+            888
+        );
     }
 }
