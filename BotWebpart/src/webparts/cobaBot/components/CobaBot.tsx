@@ -126,7 +126,7 @@ export default class CobaBot extends React.Component<ICobaBotProps, ICobaBotStat
         </div>                 
       </div>
     </div>      
-    )
+    );
   }
 
   private scrollToFooter(): void {
