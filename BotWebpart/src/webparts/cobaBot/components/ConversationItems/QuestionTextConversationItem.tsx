@@ -45,7 +45,7 @@ export default class ResponseConversationItem extends React.Component<IQuestionT
     this.props.conversationEngine.answerQuestion(this.questionKey, this.state.userResponseText);
   }
 
-  handleInputTextFieldonKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
+  private handleInputTextFieldonKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.keyCode === 13 && this.state.userResponseText.length > 0)
       this.onSaveButtonClick();
   }
@@ -64,7 +64,7 @@ export default class ResponseConversationItem extends React.Component<IQuestionT
         userResponseText: "",
       });
     }
-  };
+  }
 
   private onUndoLinkClick = async (e): Promise<void> => {
     e.preventDefault();
