@@ -3,7 +3,7 @@
   "solution": {
     "name": "Guerilla CobaBot",
     "id": "bb39a2d0-b951-403c-9876-23feb2fd0c27",
-    "version": "1.0.0.0",
+    "version": "2.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,
