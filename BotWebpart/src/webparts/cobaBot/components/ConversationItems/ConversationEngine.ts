@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ResponseConversationItem from './ResponseConversationItem';
 import QuestionConversationItem from './QuestionButtonConversationItem';
+import QuestionTextConversationItem from './QuestionTextConversationItem';
 import { KeyedCollection } from '../../../../helper/KeyedCollection';
 import { Guid } from '@microsoft/sp-core-library';
 
@@ -151,9 +152,17 @@ export class ConversationEngine {
                 else
                     nextStepToProcess++;
             }
-            else if (e.Question != null) {
+            else if (e.Question != null && e.Question.OptionType == "Button") {
                 const conversationItemKey = Guid.newGuid().toString();
                 let q = React.createElement(QuestionConversationItem, {key: conversationItemKey, conversationItemKey: conversationItemKey, conversationEngine: this, jsonDefinition: e.Question });
+                this.addQuestionToConversationStack(conversationItemKey, nextStepToProcess);
+                
+                this.conversationItems.push(q);
+                conversationItemsChanged = true;
+            }
+            else if (e.Question != null && (e.Question.OptionType == "Text" || e.Question.OptionType == "EMail")) {
+                const conversationItemKey = Guid.newGuid().toString();
+                let q = React.createElement(QuestionTextConversationItem, {key: conversationItemKey, conversationItemKey: conversationItemKey, conversationEngine: this, jsonDefinition: e.Question });
                 this.addQuestionToConversationStack(conversationItemKey, nextStepToProcess);
                 
                 this.conversationItems.push(q);
@@ -190,8 +199,49 @@ export class ConversationEngine {
                     return;
                 }
             }
+            else if (e.HttpRequestAction != null) {
+                this.conversationActive = true;     
+                this.onBotIsTyping(true);
+
+                const url: string = e.HttpRequestAction.Url;
+                const httpRequestActionKey: string = e.HttpRequestAction["Key"].toLowerCase();
+
+                console.warn(`Found HttpRequestAction; Url: "${url}"; Key: "${httpRequestActionKey}"`);
+                fetch(url, {
+                    method: 'POST',
+                    mode: 'cors',
+                    cache: 'no-cache',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    redirect: 'follow',
+                    referrerPolicy: 'origin-when-cross-origin',
+                    body: JSON.stringify(this.QuestionAnswers)
+                  })
+                .then(async res => {
+                    if (!res.ok)
+                        throw new Error(res.statusText);
+
+                    let responseText = await res.text();
+                    console.log(`Got response for HttpRequestAction; Key: "${httpRequestActionKey}"; Response: "${responseText}"`);
+
+                    let responseObj = JSON.parse(responseText);
+                    
+                    for (const result in responseObj)
+                    {
+                        const answerKey: string = httpRequestActionKey + "." + result.toLowerCase();
+                        const answerValue: string = responseObj[result];
+                        console.log(`Store HttpRequestAction response to answers; answerKey: "${answerKey}"; answerValue: "${answerValue}"`);
+                        this.QuestionAnswers.AddOrUpdate(answerKey, answerValue);    
+                    }
+
+                    this.onBotIsTyping(false);                    
+                    this.currentConversationStepIndex++;
+                    this.calculateConversationItems();
+                });
+            }
             else {
-                console.warn(`Cannot process element "${e}". Stopping here :-/ TODO`);
+                console.warn(`Cannot process element "${e.toString()}". Stopping here :-/ TODO`);
             }
         } while (nextStepToProcess != this.currentConversationStepIndex);
 
@@ -223,7 +273,7 @@ export class ConversationEngine {
         }
     }
 
-    private replaceTokensWithQuestionAnswers(stringContainingTokens: string): string {
+    public replaceTokensWithQuestionAnswers(stringContainingTokens: string): string {
 
         let replacedExpression: string = stringContainingTokens.replace(/\{\{(.*?)\}\}/g, (i, match) => {
             if (this.QuestionAnswers.ContainsKey(match.toLowerCase())) {

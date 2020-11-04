@@ -16,12 +16,13 @@ export default class ResponseConversationItem extends React.Component<IResponseC
 
   public render(): React.ReactElement<IResponseConversationItemProps> {
     const translatedText: string = this.props.conversationEngine.getTranslatedText(this.props.jsonDefinition.Text);
+    const textWithAnswers: string = this.props.conversationEngine.replaceTokensWithQuestionAnswers(translatedText);
 
     return (
       <div className={styles.conversationBotRow}>
         <div 
           className={styles.conversationItem} 
-          dangerouslySetInnerHTML={{__html: translatedText}}
+          dangerouslySetInnerHTML={{__html: textWithAnswers}}
         />
       </div>
     );

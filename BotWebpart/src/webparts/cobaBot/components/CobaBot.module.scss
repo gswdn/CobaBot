@@ -19,6 +19,7 @@ $linkIconForeground: "[theme: themePrimary]";
   .topRightMenuOuterDiv {
     position: absolute;
     top: 5px; /* do not cover slight webpart line in webpart edit mode */
+    right: 2px; /* do not cover right scrollbar */
     height: 20px;
     width: 100%;
     z-index: 2;
@@ -35,6 +36,7 @@ $linkIconForeground: "[theme: themePrimary]";
     color: $linkIconForeground;
     display: inline;
     cursor: pointer;
+    border-radius: 2px;
   }
 
   a, a:hover, a:visited {
@@ -155,6 +157,22 @@ $linkIconForeground: "[theme: themePrimary]";
     cursor: pointer;
   }
 
+  .questionTextPanel {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .questionTextBox {
+    width: 225px;
+  }
+
+  .questionTextboxSubmitButton {
+    margin-left: 5px;
+    color: $linkIconForeground;
+    vertical-align: middle;
+  }
+
     /* just because I love this square style */
     .conversationItem ul {
       list-style: square outside none;
@@ -165,6 +183,7 @@ $linkIconForeground: "[theme: themePrimary]";
     margin: 5px;
     text-decoration: none;
     height: 32px;
+    border-radius: 2px;
 
     // Primary Button
     min-width: 80px;
