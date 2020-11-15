@@ -19,7 +19,7 @@ export class KeyedCollection<T> implements IKeyedCollection<T> {
  
     private count: number = 0;
 
-    RemoveAllItemsWithKeysStartingWith(keyPrefix: string): void {
+    public RemoveAllItemsWithKeysStartingWith(keyPrefix: string): void {
         const keys: string[] = this.Keys();
 
         keys.forEach(k => {
