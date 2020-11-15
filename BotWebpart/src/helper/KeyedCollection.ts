@@ -10,12 +10,17 @@ export interface IKeyedCollection<T> {
     Keys(): string[];
     Remove(key: string): T;
     Values(): T[];
+    SerializeItemsAsJson(): string;
 }
 
 export class KeyedCollection<T> implements IKeyedCollection<T> {
     private items: { [index: string]: T } = {};
  
     private count: number = 0;
+
+    public SerializeItemsAsJson(): string {
+        return JSON.stringify(this.items);
+    }
  
     public ContainsKey(key: string): boolean {
         return this.items.hasOwnProperty(key);

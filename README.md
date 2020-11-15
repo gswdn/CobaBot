@@ -297,6 +297,8 @@ Initial Version
 * added HttpRequests to leverage the power of backend webservices
 * visual improvements: "rounded corners" for buttons (as with the updated SharePoint design) and other small things
 
+### 2.0.1
+* Bugfix; "internal variables" were not serialized and passed correctly to in HttpRequests's body.
 
 ## For contributors
 

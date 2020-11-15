@@ -205,6 +205,7 @@ export class ConversationEngine {
 
                 const url: string = e.HttpRequestAction.Url;
                 const httpRequestActionKey: string = e.HttpRequestAction["Key"].toLowerCase();
+                const bodyPayload: string = this.QuestionAnswers.SerializeItemsAsJson();
 
                 console.warn(`Found HttpRequestAction; Url: "${url}"; Key: "${httpRequestActionKey}"`);
                 fetch(url, {
@@ -216,7 +217,7 @@ export class ConversationEngine {
                     },
                     redirect: 'follow',
                     referrerPolicy: 'origin-when-cross-origin',
-                    body: JSON.stringify(this.QuestionAnswers)
+                    body: bodyPayload
                   })
                 .then(async res => {
                     if (!res.ok)
