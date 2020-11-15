@@ -205,6 +205,9 @@ export class ConversationEngine {
 
                 const url: string = e.HttpRequestAction.Url;
                 const httpRequestActionKey: string = e.HttpRequestAction["Key"].toLowerCase();
+
+                this.QuestionAnswers.RemoveAllItemsWithKeysStartingWith(httpRequestActionKey + ".");
+
                 const bodyPayload: string = this.QuestionAnswers.SerializeItemsAsJson();
 
                 console.warn(`Found HttpRequestAction; Url: "${url}"; Key: "${httpRequestActionKey}"`);

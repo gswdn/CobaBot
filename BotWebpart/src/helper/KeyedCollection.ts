@@ -11,12 +11,22 @@ export interface IKeyedCollection<T> {
     Remove(key: string): T;
     Values(): T[];
     SerializeItemsAsJson(): string;
+    RemoveAllItemsWithKeysStartingWith(keyPrefix: string): void;
 }
 
 export class KeyedCollection<T> implements IKeyedCollection<T> {
     private items: { [index: string]: T } = {};
  
     private count: number = 0;
+
+    RemoveAllItemsWithKeysStartingWith(keyPrefix: string): void {
+        const keys: string[] = this.Keys();
+
+        keys.forEach(k => {
+            if (k.indexOf(keyPrefix) === 0)
+                this.Remove(k);
+        });
+    }
 
     public SerializeItemsAsJson(): string {
         return JSON.stringify(this.items);
