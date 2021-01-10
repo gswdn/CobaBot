@@ -1,15 +1,17 @@
-@import '~office-ui-fabric-react/dist/sass/References.scss';
+@import "~office-ui-fabric-react/dist/sass/References.scss";
 $botConversationColor: "[theme: neutralLighter]";
 $userConversationColor: "[theme: neutralLighter]";
 $linkIconBackground: "[theme: neutralLighter]";
 $linkIconForeground: "[theme: themePrimary]";
+$conversationItemHighlightColor: "[theme: themePrimary]";
 
 .cobaBot {
   .outerContainer {
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
     color: "[theme: black]";
-    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+      BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
   }
 
   .outerContainer:hover .topRightMenuOuterDiv {
@@ -39,10 +41,12 @@ $linkIconForeground: "[theme: themePrimary]";
     border-radius: 2px;
   }
 
-  a, a:hover, a:visited {
+  a,
+  a:hover,
+  a:visited {
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
-    color: "[theme: black]"
+    color: "[theme: black]";
   }
 
   .container {
@@ -73,14 +77,21 @@ $linkIconForeground: "[theme: themePrimary]";
     text-align: left;
   }
 
+  .conversationItemHighlighted {
+    @extend .conversationItem;
+    border-style: solid;
+    border-color: $conversationItemHighlightColor;
+    border-width: 2px;
+  }
+
   .conversationBotRow > .conversationItem {
     float: left;
     margin-right: 20%;
     background-color: $botConversationColor;
   }
-  
+
   .conversationBotRow > .conversationItem:after {
-    content: '';
+    content: "";
     position: absolute;
     top: -1;
     bottom: 0;
@@ -95,6 +106,22 @@ $linkIconForeground: "[theme: themePrimary]";
     margin-bottom: -20px;
   }
 
+  .conversationBotRow > .conversationItemHighlighted:after {
+    content: "";
+    position: absolute;
+    top: -1;
+    bottom: 0;
+    left: 50px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: $conversationItemHighlightColor;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-bottom: -20px;
+  }
+
   .conversationUserRow > .conversationItem {
     float: right;
     margin-left: 20%;
@@ -102,7 +129,7 @@ $linkIconForeground: "[theme: themePrimary]";
   }
 
   .conversationUserRow > .conversationItem:after {
-    content: '';
+    content: "";
     position: absolute;
     top: -1;
     bottom: 0;
@@ -173,11 +200,11 @@ $linkIconForeground: "[theme: themePrimary]";
     vertical-align: middle;
   }
 
-    /* just because I love this square style */
-    .conversationItem ul {
-      list-style: square outside none;
-      padding-left: 15px;
-    }
+  /* just because I love this square style */
+  .conversationItem ul {
+    list-style: square outside none;
+    padding-left: 15px;
+  }
 
   .button {
     margin: 5px;
@@ -194,7 +221,8 @@ $linkIconForeground: "[theme: themePrimary]";
     // Basic Button
     outline: transparent;
     position: relative;
-    font-family: "Segoe UI WestEuropean","Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-family: "Segoe UI WestEuropean", "Segoe UI", -apple-system,
+      BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     font-size: $ms-font-size-m;
     font-weight: $ms-font-weight-regular;
@@ -215,23 +243,20 @@ $linkIconForeground: "[theme: themePrimary]";
     }
   }
 
-  .container::-webkit-scrollbar-track
-  {
+  .container::-webkit-scrollbar-track {
     border-left: 5px solid white;
     border-right-style: solid;
     border-right-width: 5px;
     border-right-color: "[theme: neutralLighter]";
   }
 
-  .container::-webkit-scrollbar
-  {
+  .container::-webkit-scrollbar {
     width: 10px;
     background-color: "[theme: neutralLighter]";
     border-left: 10px solid white;
   }
 
-  .container::-webkit-scrollbar-thumb
-  {
+  .container::-webkit-scrollbar-thumb {
     border-right-color: "[theme: themePrimary]";
     border-right-width: 5px;
     border-right-style: solid;
@@ -259,35 +284,34 @@ $linkIconForeground: "[theme: themePrimary]";
       opacity: 0.4;
       @for $i from 1 through 3 {
         &:nth-of-type(#{$i}) {
-          animation: blink 1s infinite ($i * .3333s);
+          animation: blink 1s infinite ($i * 0.3333s);
         }
       }
     }
   }
-  
+
   @keyframes blink {
     50% {
       opacity: 1;
     }
   }
-  
+
   @keyframes bulge {
     50% {
       transform: scale(1.05);
     }
   }
-  
-  // vertically center demo 
+
+  // vertically center demo
   html {
     display: table;
     height: 100%;
     width: 100%;
   }
-  
+
   body {
     display: table-cell;
     vertical-align: middle;
   }
   /* typing indicator for bot end */
-
 }
