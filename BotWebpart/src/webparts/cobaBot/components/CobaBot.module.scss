@@ -18,8 +18,8 @@ $linkIconForeground: "[theme: themePrimary]";
 
   .topRightMenuOuterDiv {
     position: absolute;
-    top: 5px; /* do not cover slight webpart line in webpart edit mode */
-    right: 2px; /* do not cover right scrollbar */
+    top: 36px; /* do not cover slight webpart line in webpart edit mode // was 5px to look nice in workbench. But must be 36px to look nice on a real page. But ugly on workbench. But real page counts. I guess, MS changed something on real pages... */
+    right: 18px; /* do not cover right scrollbar // was 2px and that is nice in workbench preview. But must be 18px to look nice on real page. But ugly on workbench. But real page counts. I guess, MS changed something on real pages ...  */
     height: 20px;
     width: 100%;
     z-index: 2;

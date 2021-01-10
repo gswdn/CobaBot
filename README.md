@@ -303,6 +303,9 @@ Initial Version
 ### 2.0.2
 * Bugfix; clear "internal variables" with HttpAction-Prefix before sending action again
 
+### 2.0.3
+* Bugfix: moved top right menu icons (restart conversation, undo last step etc.) into visible area again. At least, on real pages. In workbench, it's ugly now. But real pages count. No clue, what MS changed. Suddenly, the top right menu icons were out of the webpart area.
+
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.
