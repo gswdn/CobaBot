@@ -30,7 +30,7 @@ The Conversation Template is processed from top to bottom unless an explicit "go
 
 Conversation Items:
 * **Responses** are just rendered as written chat messages from the bot to the user.
-* **Questions** are something, the bot asks. You can define possible answers that will be rendered as buttons.
+* **Questions** are something, the bot asks. You can define possible answers that will be rendered as buttons or have a text box to capture user input.
 * **Decisions** are made depending on the user's answer to a question. In particular, that means jumping to another Conversation Item identified by its unique key ("Goto").
 * **HttpRequestAction** can be used to reach out to a json-based webservice in order to access backend processing logic.
 
@@ -102,13 +102,17 @@ Within your response texts, you can embed values from the "internal variables". 
     "Text": {
         "default": "Hello {{UserName}}.",
         "de-de": "Hallo {{UserName}}."
-    }
+    },
+    "HighlightResponse": true,
 }
 ```
+
+Optionally, set "HighlightResponse" to true, if you'd like to highlight your response in the conversation.
+
 Continue reading to learn about "internal variables".
 
 ### Questions
-Questions are asked by the bot and answered by the user. You can ask multiple questions in a row. The decision on how the conversation goes on is made by Decision Conversation Items. Questions can also be used to collect data from the user that can be processed in a backend webservice. See HttpRequestActions.
+Questions are asked by the bot and answered by the user. The decision on how the conversation proceeds is made by "AnswerGoto" or "AnswerValue" in combination with Decision Conversation Items. Questions can also be used to collect data from the user that can be processed in a backend webservice; see HttpRequestActions. If you don't use "GotoAnswer", multiple questions can be asked in a row.
 
 Let's have a closer look at the following example:
 ```
@@ -151,7 +155,8 @@ Let's have a closer look at the following example:
 * **Options**: Only applicable if using "OptionType" "Button". An array of options for the user to choose from. Each option is rendered as a button and has again the following properties. You should as least have two options and even more are perfectly fine. Just keep in mind, that each option is rendered as a button and you don't want to overwelm the user.
   * **ButtonText**: Displayed on the button itself.
   * **AnswerText**: Displayed in the user's chat message, after a button was clicked and the question has been answered.
-  * **AnswerValue**: The string stored in the "internal variable" if this answer has been choosen by the user.
+  * **AnswerValue**: The string stored in the "internal variable" if this answer has been choosen by the user. It then can be used in decisions to change the path of the conversation. It is optional, if "AnswerGoto" is used and nothing shall be stored in the "internal variables".
+  * **AnswerGoto**: Provide the key of another conversation item. If this answer has been choosen by the user, the engine directly jumps to that item. No need of adding a decision conversation item to directly goto another response or question.
 
 The sample above looks as follows
 * unanswered
@@ -306,6 +311,9 @@ Initial Version
 ### 2.0.3
 * Bugfix: moved top right menu icons (restart conversation, undo last step etc.) into visible area again. At least, on real pages. In workbench, it's ugly now. But real pages count. No clue, what MS changed. Suddenly, the top right menu icons were out of the webpart area.
 
+### 3.0.0
+* Improvement: added "HighlightResponse" to highlight responses
+* Improvement: added "AnswerGoto" for Button Questions to directly goto another item without adding a decision item
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.

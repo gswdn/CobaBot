@@ -18,21 +18,21 @@ Conversation:
         de-de: Ok. Was beschäftigt dich gerade?
       OptionType: Button
       Options:
-        - ButtonText: 
+        - ButtonText:
             default: My health
             de-de: Meine Gesundheit
           AnswerText:
             default: I'm thinking about my health.
             de-de: Ich denke, meine Gesundheit.
-          AnswerValue: myHealth      
-        - ButtonText: 
+          AnswerValue: myHealth
+        - ButtonText:
             default: Toilet Paper
             de-de: Toilettenpapier
           AnswerText:
             default: Toiletpaper is what bothers me.
             de-de: Toilettenpapier beschäftigt mich.
           AnswerValue: toiletpaper
-        - ButtonText: 
+        - ButtonText:
             default: Pizza
             de-de: Pizza
           AnswerText:
@@ -54,19 +54,19 @@ Conversation:
       Goto: AnythingElseQuestion
   - Question:
       Key: toiletpaperQuestion
-      Text: 
+      Text:
         default: How many rolls do you have in stock?
         de-de: Wieviele Rollen hast Du noch?
       OptionType: Button
       Options:
-        - ButtonText: 
+        - ButtonText:
             default: Just one
             de-de: Nur eine
           AnswerText:
             default: Just one left.
             de-de: Ich habe nur noch eine übrig.
           AnswerValue: onlyOne
-        - ButtonText: 
+        - ButtonText:
             default: More than enough
             de-de: Mehr als genug
           AnswerText:
@@ -75,19 +75,19 @@ Conversation:
           AnswerValue: plenty
   - Question:
       Key: storesOpenTodayQuestion
-      Text: 
+      Text:
         default: Are ALDI stores open today?
         de-de: Sind die ALDI Filialen heute geöffnet?
       OptionType: Button
       Options:
-        - ButtonText: 
+        - ButtonText:
             default: Yes
             de-de: Ja
           AnswerText:
             default: Yes, they are open.
             de-de: Ja, sie sind geöffnet.
           AnswerValue: true
-        - ButtonText: 
+        - ButtonText:
             default: No
             de-de: Nein
           AnswerText:
@@ -102,7 +102,7 @@ Conversation:
       - Expression: '!{{storesOpenTodayQuestion}}'
         Goto: RelaxTodayResponse
       - Expression: 'true'
-        Goto: GetSweetsInsteadResponse        
+        Goto: GetSweetsInsteadResponse
   - Response:
       Key: GoShoppingResponse
       Text:
@@ -114,7 +114,8 @@ Conversation:
       Text:
         default: Damn :-/<br>When the shit hits the fan...<br>Too bad for you.
         de-de: Mist :-/<br> Wenn die Kacke am Dampfen ist...<br>Echt blöd für dich.
-      Goto: AnythingElseQuestion      
+      HighlightResponse: true
+      Goto: AnythingElseQuestion
   - Response:
       Key: RelaxTodayResponse
       Text:
@@ -126,28 +127,61 @@ Conversation:
       Text:
         default: Lucky you. <b>You could go to ALDI's anyway and get some sweets.</b>
         de-de: Du Glücklicher. <b>Du könntest trotzdem zum ALDI und ein paar Süßigkeiten holen.</b>
-      Goto: AnythingElseQuestion      
+      Goto: AnythingElseQuestion
   - Response:
       Key: pizzaResponse
       Text:
         default: I love pizza. With <ul><li>pepperoni</li><li>corn</li><li>garlic</li></ul>And all a little bit spicy.
         de-de: Ich liebe Pizza. Mit <ul><li>Salami</li><li>Mais</li><li>Knoblauch</li></ul>Und alles etwas scharf.
+      Goto: PizzaForBreakfastQuestion
+  - Question:
+      Key: PizzaForBreakfastQuestion
+      Text:
+        default: Do you like Pizza for breakfast?
+        de-de: Magst Du Pizza zum Fr&uuml;hstück?
+      OptionType: Button
+      Options:
+        - ButtonText:
+            default: Yes
+            de-de: Ja
+          AnswerText:
+            default: Yes. Yummy :)
+            de-de: Ja. Lecker :)
+          AnswerGoto: pizzaBreakfastYesResponse
+        - ButtonText:
+            default: No
+            de-de: Nein
+          AnswerText:
+            default: No. What a question!
+            de-de: Nein. Was für eine Frage!
+          AnswerGoto: pizzaBreakfastNoResponse
+  - Response:
+      Key: pizzaBreakfastYesResponse
+      Text:
+        default: Brr. I can't image that.
+        de-de: Brr. Also ich kann mir das nicht vorstellen.
+      Goto: AnythingElseQuestion
+  - Response:
+      Key: pizzaBreakfastNoResponse
+      Text:
+        default: So do I.
+        de-de: Ich mag es auch nicht.
       Goto: AnythingElseQuestion
   - Question:
       Key: AnythingElseQuestion
-      Text: 
+      Text:
         default: Is there anything else on your mind?
         de-de: Beschäftigt dich noch was?
       OptionType: Button
       Options:
-        - ButtonText: 
+        - ButtonText:
             default: Yes
             de-de: Ja
           AnswerText:
             default: Yes
             de-de: Ja
           AnswerValue: true
-        - ButtonText: 
+        - ButtonText:
             default: No
             de-de: Nein
           AnswerText:
@@ -158,7 +192,7 @@ Conversation:
       - Expression: '{{AnythingElseQuestion}}'
         Goto: WhatsOnYourMindQuestion
       - Expression: 'true'
-        Goto: ThankYouResponse        
+        Goto: ThankYouResponse   
   - Response:
       Key: ThankYouResponse
       Text:

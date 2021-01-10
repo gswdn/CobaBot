@@ -31,14 +31,14 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
     this.questionKey = props.jsonDefinition.Key;
   }
 
-  private onSaveButtonClick = async (answerValue: string, answerText: string): Promise<void> => {
+  private onSaveButtonClick = async (answerValue: string, answerGoto: string, answerText: string): Promise<void> => {
     this.setState({ 
       questionAnswerControlsAreaVisible: false,
       userResponseAreaVisible: true,
       userResponseDisplayText: answerText
     });
 
-    this.props.conversationEngine.answerQuestion(this.questionKey, answerValue);
+    this.props.conversationEngine.answerQuestion(this.questionKey, answerValue, answerGoto);
   }
 
   private onUndoLinkClick = async (e): Promise<void> => {
@@ -66,7 +66,7 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
     const uniqueKey: string = Guid.newGuid().toString();
 
     return (
-      <button key={uniqueKey} className={styles.button} onClick={ () => onSaveButtonClick(jsonButtonDefinition.AnswerValue, translatedAnswerText) }>{translatedButtonText}</button>
+      <button key={uniqueKey} className={styles.button} onClick={ () => onSaveButtonClick(jsonButtonDefinition.AnswerValue, jsonButtonDefinition.AnswerGoto, translatedAnswerText) }>{translatedButtonText}</button>
     );
   }
 

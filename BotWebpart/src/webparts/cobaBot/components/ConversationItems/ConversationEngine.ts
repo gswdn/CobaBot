@@ -298,14 +298,20 @@ export class ConversationEngine {
         return replacedExpression;
     }
 
-    public answerQuestion(questionKey: string, answerToQuestion: string) {
+    public answerQuestion(questionKey: string, answerToQuestion: string, nextConversationItemKey: string = null) {
         this.conversationActive = true;     
         this.onBotIsTyping(true);
         setTimeout(
             function() {
                 this.onBotIsTyping(false);
-                this.QuestionAnswers.AddOrUpdate(questionKey.toLowerCase(), answerToQuestion);
-                this.currentConversationStepIndex++;
+                
+                if (answerToQuestion != null)
+                    this.QuestionAnswers.AddOrUpdate(questionKey.toLowerCase(), answerToQuestion);
+
+                if (nextConversationItemKey == null)
+                    this.currentConversationStepIndex++;
+                else
+                    this.currentConversationStepIndex = this.getIndexOfConversationItemByKey(nextConversationItemKey);
                 this.calculateConversationItems();
             }
             .bind(this),
