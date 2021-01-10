@@ -268,13 +268,19 @@ export class ConversationEngine {
             for (const key in itemIndexObject) {
                 if (itemIndexObject.hasOwnProperty(key)) {
                     const element = itemIndexObject[key];
-                    if (element.Key && element.Key == keyToSearch) {
-                        let nextIndex: number = itemIndex;
-                        return nextIndex;
+                    if (element != null) {
+                        if (element.Key && element.Key == keyToSearch) {
+                            let nextIndex: number = itemIndex;
+                            return nextIndex;
+                        }
+                    }
+                    else {
+                        console.warn("Please check. Ignoring strange element: " + JSON.stringify(itemIndexObject));
                     }
                 }
             }
         }
+        console.warn("Failed to find conversation item with key '" + keyToSearch + "'");
     }
 
     public replaceTokensWithQuestionAnswers(stringContainingTokens: string): string {
