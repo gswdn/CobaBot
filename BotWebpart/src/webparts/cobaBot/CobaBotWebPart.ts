@@ -25,10 +25,10 @@ export interface ICobaBotWebPartProps {
   PNPTelemetryEnabled: boolean;
 }
 
-export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPartProps> {
+export default class CobaBotWebPart extends BaseClientSideWebPart<ICobaBotWebPartProps> {
   public render(): void {
 
-    const currentUILanguage:string = this.getCurrentUICulture();
+    const currentUILanguage: string = this.getCurrentUICulture();
 
     const element: React.ReactElement<ICobaBotProps> = React.createElement(
       CobaBot,
@@ -47,8 +47,15 @@ export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPa
   public getCurrentUICulture(): string {
     let currentUrl: string = window.location.href.toLowerCase();
 
-    if (currentUrl.indexOf("_en.") > -1) return "en-US";
-    else if (currentUrl.indexOf("_de.") > -1) return "de-DE";
+    if (currentUrl.indexOf("/en/") > -1) return "en-US";
+    else if (currentUrl.indexOf("/de/") > -1) return "de-DE";
+    else if (currentUrl.indexOf("/fr/") > -1) return "fr-FR";
+    else if (currentUrl.indexOf("/hu/") > -1) return "hu-HU";
+    else if (currentUrl.indexOf("/it/") > -1) return "it-IT";
+    else if (currentUrl.indexOf("/nl/") > -1) return "nl-NL";
+    else if (currentUrl.indexOf("/sl/") > -1) return "sl-SI";
+    else if (currentUrl.indexOf("_en.") > -1) return "en-US";
+    else if (currentUrl.indexOf("_de.") > -1) return "de-DE";    
     else return this.context.pageContext.cultureInfo.currentUICultureName;
   }
 
@@ -66,13 +73,13 @@ export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPa
 
     this.onPropertyPaneFieldChanged(targetProperty, oldValue, newValue);
 
-      this.render();
-    
+    this.render();
+
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
 
-    if (! this.properties.PNPTelemetryEnabled) {
+    if (!this.properties.PNPTelemetryEnabled) {
       const telemetry = PnPTelemetry.default.getInstance().optOut();
     }
 
@@ -116,7 +123,7 @@ export default class CobaBotWebPart extends BaseClientSideWebPart <ICobaBotWebPa
                 }),
                 PropertyPaneToggle('DisplayStopConversationButton', {
                   label: 'Display "stop converstion" button'
-                })  
+                })
               ]
             },
             {

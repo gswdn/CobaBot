@@ -67,7 +67,9 @@ CobaBot supports localization. That means, it supports defining Responses and Qu
 The language is selected by the locale given in the SharePoint context.
 
 
-Since SharePoint Sites don't offer native localization/translations yet, I normally create a dedicated page for each language and use the URL to distinguish them, e.g. ".../SitePages/PageName_EN.aspx" or ".../SitePages/PageName_DE.aspx". So, if the URL contains "_DE." or "_EN.", the corresponding SharePoint locale is overwritten by DE or EN.
+Since SharePoint Sites did not offer native localization/translations for a long time, I normally created a dedicated page for each language and use the URL to distinguish them, e.g. ".../SitePages/PageName_EN.aspx" or ".../SitePages/PageName_DE.aspx". So, if the URL contains "_DE." or "_EN.", the corresponding SharePoint locale is overwritten by DE or EN.
+
+Same is true for SharePoint translations, which were added quite recently to SPO. The URL is checked for a language string, e.g. "/de/" or "/en/" which normally appears directly behind "/SitePages/". Some languages are already supported: DE, EN, NL, FR, IT, SI, HU. Additional ones could be added in the source code quite easily. Or someone has an idea, how to detect the pages language using SPFx APIs or parse the language in the URL and determine the correct local code. Open for suggestions...
 
 ##### Setting translated texts
 Each Text Item in the Conversation Template has a default language text. This is choosen, if no additionally specified language item matches. Otherwise, the specified more specific locale text is used. If you don't need translated texts, just go ahead with the default text only.
@@ -314,6 +316,10 @@ Initial Version
 ### 3.0.0
 * Improvement: added "HighlightResponse" to highlight responses
 * Improvement: added "AnswerGoto" for Button Questions to directly goto another item without adding a decision item
+
+### 3.1.0
+* Improvement: highlighted speaking-bubble did not look nice
+* Improvement: detect certain languages for translations
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.
