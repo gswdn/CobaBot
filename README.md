@@ -320,6 +320,9 @@ Initial Version
 ### 3.1.0
 * Improvement: highlighted speaking-bubble did not look nice
 * Improvement: detect certain languages for translations
+
+### 3.1.1
+* bugfix: speaking bubbles
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.
