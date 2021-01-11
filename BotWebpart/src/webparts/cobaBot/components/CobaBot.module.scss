@@ -93,33 +93,25 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationBotRow > .conversationItem:after {
     content: "";
     position: absolute;
-    top: 1;
-    bottom: 0;
     left: 50px;
-    width: 0;
-    height: 0;
     border: 20px solid transparent;
     border-top-color: $botConversationColor;
-    border-bottom: 0;
-    border-left: 0;
+    border-bottom: 0px;
+    border-left: 0px;
     margin-left: -10px;
-    margin-bottom: -20px;
+    margin-bottom: -21px;
   }
 
   .conversationBotRow > .conversationItemHighlighted:after {
     content: "";
     position: absolute;
-    top: 1;
-    bottom: 0;
     left: 50px;
-    width: 0;
-    height: 0;
     border: 20px solid transparent;
     border-top-color: $conversationItemHighlightColor;
-    border-bottom: 0;
-    border-left: 0;
+    border-bottom: 0px;
+    border-left: 0px;
     margin-left: -10px;
-    margin-bottom: -20px;
+    margin-bottom: -21px;
   }
 
   .conversationUserRow > .conversationItem {
@@ -131,17 +123,13 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationUserRow > .conversationItem:after {
     content: "";
     position: absolute;
-    top: 1;
-    bottom: 0;
     right: 50px;
-    width: 0;
-    height: 0;
     border: 20px solid transparent;
     border-top-color: $userConversationColor;
-    border-bottom: 0;
-    border-right: 0;
+    border-bottom: 0px;
+    border-right: 0px;
     margin-left: -10px;
-    margin-bottom: -20px;
+    margin-bottom: -21px;
   }
 
   .footer {

@@ -323,6 +323,9 @@ Initial Version
 
 ### 3.1.1
 * bugfix: speaking bubbles
+
+### 3.1.2
+* bugfix: speaking bubbles (again)
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.
