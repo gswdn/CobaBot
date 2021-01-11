@@ -93,18 +93,20 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationBotRow > .conversationItem:after {
     content: "";
     position: absolute;
+    bottom: 0px;
     left: 50px;
     border: 20px solid transparent;
     border-top-color: $botConversationColor;
     border-bottom: 0px;
     border-left: 0px;
     margin-left: -10px;
-    margin-bottom: -21px;
+    margin-bottom: -20px;
   }
 
   .conversationBotRow > .conversationItemHighlighted:after {
     content: "";
     position: absolute;
+    bottom: 0px;
     left: 50px;
     border: 20px solid transparent;
     border-top-color: $conversationItemHighlightColor;
@@ -123,13 +125,14 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationUserRow > .conversationItem:after {
     content: "";
     position: absolute;
+    bottom: 0px;
     right: 50px;
     border: 20px solid transparent;
     border-top-color: $userConversationColor;
     border-bottom: 0px;
     border-right: 0px;
     margin-left: -10px;
-    margin-bottom: -21px;
+    margin-bottom: -20px;
   }
 
   .footer {
