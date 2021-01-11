@@ -93,7 +93,7 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationBotRow > .conversationItem:after {
     content: "";
     position: absolute;
-    top: -1;
+    top: 0;
     bottom: 0;
     left: 50px;
     width: 0;
@@ -109,7 +109,7 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationBotRow > .conversationItemHighlighted:after {
     content: "";
     position: absolute;
-    top: -1;
+    top: 0;
     bottom: 0;
     left: 50px;
     width: 0;
@@ -131,7 +131,7 @@ $conversationItemHighlightColor: "[theme: themePrimary]";
   .conversationUserRow > .conversationItem:after {
     content: "";
     position: absolute;
-    top: -1;
+    top: 0;
     bottom: 0;
     right: 50px;
     width: 0;
