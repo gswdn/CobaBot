@@ -332,6 +332,10 @@ Initial Version
 
 ### 3.1.4
 * bugfix: speaking bubbles (again)
+
+### 3.1.5
+* bugfix: enabled setting HTML in button response texts to enable html formatting and escaped umlauts
+
 ## For contributors
 
 If you'd like to contribute, please contact me with your idea.

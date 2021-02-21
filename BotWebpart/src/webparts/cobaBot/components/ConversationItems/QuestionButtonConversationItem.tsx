@@ -22,17 +22,17 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
   constructor(props: IQuestionButtonConversationItemProps) {
     super(props);
 
-    this.state = { 
+    this.state = {
       questionAnswerControlsAreaVisible: true,
       userResponseAreaVisible: false,
-      userResponseDisplayText: "" 
+      userResponseDisplayText: ""
     };
 
     this.questionKey = props.jsonDefinition.Key;
   }
 
   private onSaveButtonClick = async (answerValue: string, answerGoto: string, answerText: string): Promise<void> => {
-    this.setState({ 
+    this.setState({
       questionAnswerControlsAreaVisible: false,
       userResponseAreaVisible: true,
       userResponseDisplayText: answerText
@@ -46,8 +46,7 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
     this.props.conversationEngine.undoCoversationUntilItem(this.props.conversationItemKey);
   }
 
-  private renderButtons(props)
-  {
+  private renderButtons(props) {
     const _this = props.this;
     const onSaveButtonClick = _this.onSaveButtonClick;
     const jsonOptionsDefinition = _this.props.jsonDefinition.Options;
@@ -55,7 +54,7 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
 
     return (
       <div>
-        { jsonOptionsDefinition.map(o => _this.renderButton(o, onSaveButtonClick, conversationEngine)) }
+        { jsonOptionsDefinition.map(o => _this.renderButton(o, onSaveButtonClick, conversationEngine))}
       </div>
     );
   }
@@ -66,43 +65,39 @@ export default class ResponseConversationItem extends React.Component<IQuestionB
     const uniqueKey: string = Guid.newGuid().toString();
 
     return (
-      <button key={uniqueKey} className={styles.button} onClick={ () => onSaveButtonClick(jsonButtonDefinition.AnswerValue, jsonButtonDefinition.AnswerGoto, translatedAnswerText) }>{translatedButtonText}</button>
+      <button key={uniqueKey} className={styles.button} onClick={() => onSaveButtonClick(jsonButtonDefinition.AnswerValue, jsonButtonDefinition.AnswerGoto, translatedAnswerText)}>{translatedButtonText}</button>
     );
   }
 
   public render(): React.ReactElement<IQuestionButtonConversationItemProps> {
     const translatedQuestionText: string = this.props.conversationEngine.getTranslatedText(this.props.jsonDefinition.Text);
     const domRef = React.createRef();
-  
+
 
     return (
       <div>
         <div className={styles.conversationBotRow}>
-          <div  className={styles.conversationItem}>
-            <div dangerouslySetInnerHTML={{__html: translatedQuestionText}}
-              >
-            </div>
+          <div className={styles.conversationItem}>
+            <div dangerouslySetInnerHTML={{ __html: translatedQuestionText }} />
           </div>
         </div>
 
         <div className={styles.conversationUserRow}>
           <div className={styles.conversationItem}>
-            { this.state.questionAnswerControlsAreaVisible
-                ? <div className={styles.questionButtonPanel} >
-                    <this.renderButtons this={this} />
-                  </div>
-                : null
+            {this.state.questionAnswerControlsAreaVisible
+              ? <div className={styles.questionButtonPanel} >
+                <this.renderButtons this={this} />
+              </div>
+              : null
             }
-            { this.state.userResponseAreaVisible
-                ? <div className={styles.questionUseranswerPanel}>
-                    <div>
-                      { this.state.userResponseDisplayText }
-                    </div>
-                    <div className={styles.questionUserAnswerContextPanel}>
-                      <a onClick={(e) => this.onUndoLinkClick(e)} title="Go back to this question."><Icon iconName='Rewind' className={styles.questionUserAnswerContextPanelButton} /></a>
-                    </div>
-                  </div>
-                : null
+            {this.state.userResponseAreaVisible
+              ? <div className={styles.questionUseranswerPanel}>
+                <div dangerouslySetInnerHTML={{ __html: this.state.userResponseDisplayText }} />
+                <div className={styles.questionUserAnswerContextPanel}>
+                  <a onClick={(e) => this.onUndoLinkClick(e)} title="Go back to this question."><Icon iconName='Rewind' className={styles.questionUserAnswerContextPanelButton} /></a>
+                </div>
+              </div>
+              : null
             }
           </div>
         </div>

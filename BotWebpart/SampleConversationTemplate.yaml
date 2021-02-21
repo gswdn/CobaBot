@@ -9,13 +9,13 @@ Conversation:
           I am CobaBot. That's the abbreviation for Corona Balcony Bot.
           A hint, when and where I was born...
         de-de: >-
-          Ich bin CobaBot. Das ist die Abkürzung für Corona Balcony Bot.
+          Ich bin CobaBot. Das ist die Abk&uuml;rzung f&uuml;r Corona Balcony Bot.
           Ein Hinweis, wann und wo ich geboren wurde...
   - Question:
       Key: WhatsOnYourMindQuestion
       Text:
         default: Ok. What's on your mind?
-        de-de: Ok. Was beschäftigt dich gerade?
+        de-de: Ok. Was besch&auml;ftigt dich gerade?
       OptionType: Button
       Options:
         - ButtonText:
@@ -30,7 +30,7 @@ Conversation:
             de-de: Toilettenpapier
           AnswerText:
             default: Toiletpaper is what bothers me.
-            de-de: Toilettenpapier beschäftigt mich.
+            de-de: Toilettenpapier besch&auml;ftigt mich.
           AnswerValue: toiletpaper
         - ButtonText:
             default: Pizza
@@ -50,7 +50,7 @@ Conversation:
       Key: HealthResponse
       Text:
         default: Yes, that's on my mind as well. Hope, my anti-virus service doesn't terminate unexpectedly.
-        de-de: Ja, das beschäftigt mich auch. Ich hoffe, mein Virenscanner beendet sich nicht unerwartet.
+        de-de: Ja, das besch&auml;ftigt mich auch. Ich hoffe, mein Virenscanner beendet sich nicht unerwartet.
       Goto: AnythingElseQuestion
   - Question:
       Key: toiletpaperQuestion
@@ -64,7 +64,7 @@ Conversation:
             de-de: Nur eine
           AnswerText:
             default: Just one left.
-            de-de: Ich habe nur noch eine übrig.
+            de-de: Ich habe nur noch eine &uuml;brig.
           AnswerValue: onlyOne
         - ButtonText:
             default: More than enough
@@ -77,7 +77,7 @@ Conversation:
       Key: storesOpenTodayQuestion
       Text:
         default: Are ALDI stores open today?
-        de-de: Sind die ALDI Filialen heute geöffnet?
+        de-de: Sind die ALDI Filialen heute ge&ouml;ffnet?
       OptionType: Button
       Options:
         - ButtonText:
@@ -85,7 +85,7 @@ Conversation:
             de-de: Ja
           AnswerText:
             default: Yes, they are open.
-            de-de: Ja, sie sind geöffnet.
+            de-de: Ja, sie sind ge&ouml;ffnet.
           AnswerValue: true
         - ButtonText:
             default: No
@@ -107,26 +107,26 @@ Conversation:
       Key: GoShoppingResponse
       Text:
         default: Oh oh. Better shake your leg and head for the next ALDI store.
-        de-de: Oh oh. Besser, Du beeilst Dich und gehst zur nächsten ALDI Filiale.
+        de-de: Oh oh. Besser, Du beeilst Dich und gehst zur n&auml;chsten ALDI Filiale.
       Goto: AnythingElseQuestion
   - Response:
       Key: WhenTheShitHitsTheFanResponse
       Text:
         default: Damn :-/<br>When the shit hits the fan...<br>Too bad for you.
-        de-de: Mist :-/<br> Wenn die Kacke am Dampfen ist...<br>Echt blöd für dich.
+        de-de: Mist :-/<br> Wenn die Kacke am Dampfen ist...<br>Echt bl&ouml;d f&uuml;r dich.
       HighlightResponse: true
       Goto: AnythingElseQuestion
   - Response:
       Key: RelaxTodayResponse
       Text:
         default: Lucky you. Relax today and develop a Cobabot.
-        de-de: Du Glücklicher. Entspann dich und entwickle einen Cobabot.
+        de-de: Du Gl&uuml;cklicher. Entspann dich und entwickle einen Cobabot.
       Goto: AnythingElseQuestion
   - Response:
       Key: GetSweetsInsteadResponse
       Text:
         default: Lucky you. <b>You could go to ALDI's anyway and get some sweets.</b>
-        de-de: Du Glücklicher. <b>Du könntest trotzdem zum ALDI und ein paar Süßigkeiten holen.</b>
+        de-de: Du Gl&uuml;cklicher. <b>Du k&ouml;nntest trotzdem zum ALDI und ein paar S&uuml;ßigkeiten holen.</b>
       Goto: AnythingElseQuestion
   - Response:
       Key: pizzaResponse
@@ -138,7 +138,7 @@ Conversation:
       Key: PizzaForBreakfastQuestion
       Text:
         default: Do you like Pizza for breakfast?
-        de-de: Magst Du Pizza zum Fr&uuml;hstück?
+        de-de: Magst Du Pizza zum Fr&uuml;hst&uuml;ck?
       OptionType: Button
       Options:
         - ButtonText:
@@ -153,7 +153,7 @@ Conversation:
             de-de: Nein
           AnswerText:
             default: No. What a question!
-            de-de: Nein. Was für eine Frage!
+            de-de: Nein. Was f&uuml;r eine Frage!
           AnswerGoto: pizzaBreakfastNoResponse
   - Response:
       Key: pizzaBreakfastYesResponse
@@ -171,7 +171,7 @@ Conversation:
       Key: AnythingElseQuestion
       Text:
         default: Is there anything else on your mind?
-        de-de: Beschäftigt dich noch was?
+        de-de: Besch&auml;ftigt dich noch was?
       OptionType: Button
       Options:
         - ButtonText:
@@ -197,4 +197,4 @@ Conversation:
       Key: ThankYouResponse
       Text:
         default: Ok. You're welcome. It was nice chatting with you.<br>Take care and have a great day.
-        de-de: Ok. Danke für den Schnack.<br>Pass auf Dich auf und habe einen großartigen Tag.
+        de-de: Ok. Danke f&uuml;r den Schnack.<br>Pass auf Dich auf und habe einen großartigen Tag.
